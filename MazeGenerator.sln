@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazeGenerator", "MazeGenerator\MazeGenerator.csproj", "{7BDA1A5E-0509-4BFB-90DB-1C67324975C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazeGeneratorTest", "MazeGeneratorTest\MazeGeneratorTest.csproj", "{0E819BB2-B874-45A7-8299-06FAF810D80E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7BDA1A5E-0509-4BFB-90DB-1C67324975C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BDA1A5E-0509-4BFB-90DB-1C67324975C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BDA1A5E-0509-4BFB-90DB-1C67324975C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BDA1A5E-0509-4BFB-90DB-1C67324975C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E819BB2-B874-45A7-8299-06FAF810D80E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E819BB2-B874-45A7-8299-06FAF810D80E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E819BB2-B874-45A7-8299-06FAF810D80E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E819BB2-B874-45A7-8299-06FAF810D80E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
