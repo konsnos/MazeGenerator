@@ -13,17 +13,15 @@ namespace MazeGenerator
             Console.WriteLine("MazeGenerator initialised");
         }
 
-        public void GetKruskal()
+        public static bool[,] GetKruskal(int width, int height)
         {
-            int width = 10;
-            int height = 10;
             var graph = Kruskal.GenerateGraph(width, height);
             // Console.Write(graph.ToString());
             var spanningTree = Kruskal.GetSpanningTree(graph);
 
             // PrintEdges(spanningTree);
 
-            PrintMap(width, height, spanningTree);
+            return GetMap(width, height, spanningTree);
         }
 
         private static void PrintEdges(List<Edge> spanningTree)
@@ -43,7 +41,7 @@ namespace MazeGenerator
             return x.Endpoint1.CompareTo(y.Endpoint1);
         }
 
-        private static void PrintMap(int width, int height, List<Edge> spanningTree)
+        private static bool[,] GetMap(int width, int height, List<Edge> spanningTree)
         {
             var mapWidth = (width * 2) + 1;
             var mapHeight = (height * 2) + 1;
@@ -79,6 +77,14 @@ namespace MazeGenerator
                 }
             }
 
+            return map;
+        }
+
+        public static void PrintMap(bool[,] map)
+        {
+            var mapHeight = map.GetLength(1);
+            var mapWidth = map.GetLength(0);
+            
             var stringBuilder = new StringBuilder();
 
             for (int y = 0; y < mapHeight; y++)

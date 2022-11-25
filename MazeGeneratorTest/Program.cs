@@ -1,6 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using MazeGenerator;
 
-using MazeGenerator;
-
-var _mazeGenerator = new Mazes();
-_mazeGenerator.GetKruskal();
+var map = Mazes.GetKruskal(10, 10);
+Mazes.PrintMap(map);
