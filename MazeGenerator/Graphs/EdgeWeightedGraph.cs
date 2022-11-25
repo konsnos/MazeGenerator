@@ -10,7 +10,11 @@ namespace MazeGenerator.Graphs
         private int _edges;
         private LinkedList<Edge>[] _adj;
 
+#if SET_SEED
+        private static readonly Random _random = new Random(0);
+#else
         private static readonly Random _random = new Random();
+#endif
 
         public EdgeWeightedGraph(int vertices)
         {

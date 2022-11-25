@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazeGenerator", "MazeGenera
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazeGeneratorTest", "MazeGeneratorTest\MazeGeneratorTest.csproj", "{0E819BB2-B874-45A7-8299-06FAF810D80E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazeGeneratorBenchmark", "MazeGeneratorBenchmark\MazeGeneratorBenchmark.csproj", "{21101F1F-62DB-4802-A62C-AF41B5A828FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{0E819BB2-B874-45A7-8299-06FAF810D80E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E819BB2-B874-45A7-8299-06FAF810D80E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E819BB2-B874-45A7-8299-06FAF810D80E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21101F1F-62DB-4802-A62C-AF41B5A828FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21101F1F-62DB-4802-A62C-AF41B5A828FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21101F1F-62DB-4802-A62C-AF41B5A828FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21101F1F-62DB-4802-A62C-AF41B5A828FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

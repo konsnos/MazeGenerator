@@ -8,8 +8,12 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-      <DefineConstants>TRACE</DefineConstants>
+      <DefineConstants>TRACE,SET_SEED</DefineConstants>
     </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="BenchmarkDotNet" Version="0.13.2" />
+    </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\MazeGenerator\MazeGenerator.csproj" />
