@@ -8,11 +8,6 @@ namespace MazeGenerator
 {
     public class Mazes
     {
-        public Mazes()
-        {
-            Console.WriteLine("MazeGenerator initialised");
-        }
-
         public static bool[,] GetKruskal(int width, int height)
         {
             var graph = Kruskal.GenerateGraph(width, height);
