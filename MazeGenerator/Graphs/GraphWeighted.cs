@@ -4,11 +4,11 @@ using System.Text;
 
 namespace MazeGenerator.Graphs
 {
-    public class EdgeWeightedGraph
+    public class GraphWeighted
     {
         public int Vertices { get; }
         private int _edges;
-        private LinkedList<Edge>[] _adj;
+        private LinkedList<EdgeWeighted>[] _adj;
 
 #if SET_SEED
         private static readonly Random _random = new Random(0);
@@ -16,7 +16,7 @@ namespace MazeGenerator.Graphs
         private static readonly Random _random = new Random();
 #endif
 
-        public EdgeWeightedGraph(int vertices)
+        public GraphWeighted(int vertices)
         {
             if (vertices < 0)
                 throw new Exception("Number of vertices in a Graph must be nonnegative");
@@ -25,37 +25,37 @@ namespace MazeGenerator.Graphs
             
             _edges = 0;
 
-            _adj = new LinkedList<Edge>[vertices];
+            _adj = new LinkedList<EdgeWeighted>[vertices];
 
             for (int v = 0; v < vertices; v++)
             {
-                _adj[v] = new LinkedList<Edge>();
+                _adj[v] = new LinkedList<EdgeWeighted>();
             }
         }
 
         public void AddEdge(int endpoint1, int endpoint2)
         {
-            var edge = new Edge(endpoint1, endpoint2, (float)_random.NextDouble());
+            var edge = new EdgeWeighted(endpoint1, endpoint2, 0/*(float)_random.NextDouble()*/);
             AddEdge(edge);
         }
 
-        public void AddEdge(Edge edge)
+        public void AddEdge(EdgeWeighted edgeWeighted)
         {
-            int endpoint1 = edge.Endpoint1;
-            int endpoint2 = edge.Endpoint2;
-            _adj[endpoint1].AddFirst(edge);
-            _adj[endpoint2].AddFirst(edge);
+            int endpoint1 = edgeWeighted.Endpoint1;
+            int endpoint2 = edgeWeighted.Endpoint2;
+            _adj[endpoint1].AddFirst(edgeWeighted);
+            _adj[endpoint2].AddFirst(edgeWeighted);
             _edges++;
         }
 
-        public IEnumerable<Edge> Adj(int v)
+        public IEnumerable<EdgeWeighted> Adj(int v)
         {
             return _adj[v];
         }
 
-        public List<Edge> Edges()
+        public List<EdgeWeighted> Edges()
         {
-            var list = new List<Edge>();
+            var list = new List<EdgeWeighted>();
             
             for (int vertexIndex = 0; vertexIndex < Vertices; vertexIndex++)
             {

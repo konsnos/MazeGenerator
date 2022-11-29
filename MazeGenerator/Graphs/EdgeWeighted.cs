@@ -2,15 +2,26 @@ using System;
 
 namespace MazeGenerator.Graphs
 {
-    public class Edge
+    public class EdgeWeighted : IComparable<EdgeWeighted>
     {
         public int Endpoint1 { get; }
         public int Endpoint2 { get; }
+        public float Weight { get; }
 
-        public Edge(int endpoint1, int endpoint2)
+        public EdgeWeighted(int endpoint1, int endpoint2, float weight)
         {
             Endpoint1 = endpoint1;
             Endpoint2 = endpoint2;
+            Weight = weight;
+        }
+
+        public int CompareTo(EdgeWeighted other)
+        {
+            if (Weight < other.Weight)
+                return -1;
+            if (Weight > other.Weight)
+                return +1;
+            return 0;
         }
 
         public int Target(int vertex)

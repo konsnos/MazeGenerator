@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using MazeGenerator.Graphs;
+using MazeGenerator.Utils;
 
 namespace MazeGenerator.GenerationAlgorithms
 {
     public class Kruskal
     {
-        public static EdgeWeightedGraph GenerateGraph(int width, int height)
+        public static Graph GenerateGraph(int width, int height)
         {
-            var graph = new EdgeWeightedGraph(width * height);
+            var graph = new Graph(width * height);
 
             // add edges
             int[,] vertices = new int[width, height];
@@ -30,10 +31,10 @@ namespace MazeGenerator.GenerationAlgorithms
             return graph;
         }
 
-        public static List<Edge> GetSpanningTree(EdgeWeightedGraph graph)
+        public static List<Edge> GetSpanningTree(Graph graph)
         {
             var edges = graph.Edges();
-            edges.Sort(CompareEdges);
+            edges.Shuffle();
 
             int totalVertices = graph.Vertices;
             var cycleDetector = new CycleDetector(totalVertices);
@@ -54,7 +55,7 @@ namespace MazeGenerator.GenerationAlgorithms
             return spanningTree;
         }
 
-        private static int CompareEdges(Edge x, Edge y)
+        private static int CompareEdges(EdgeWeighted x, EdgeWeighted y)
         {
             return x.Weight.CompareTo(y.Weight);
         }
