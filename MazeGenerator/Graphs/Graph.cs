@@ -7,8 +7,8 @@ namespace MazeGenerator.Graphs
     public class Graph
     {
         public int Vertices { get; }
-        private int _edges;
-        private LinkedList<Edge>[] _adj;
+        protected int _edges;
+        protected LinkedList<Edge>[] _adj;
 
         public Graph(int vertices)
         {
@@ -27,7 +27,7 @@ namespace MazeGenerator.Graphs
             }
         }
 
-        public void AddEdge(int endpoint1, int endpoint2)
+        public virtual void AddEdge(int endpoint1, int endpoint2)
         {
             var edge = new Edge(endpoint1, endpoint2);
             AddEdge(edge);
@@ -42,12 +42,12 @@ namespace MazeGenerator.Graphs
             _edges++;
         }
 
-        public IEnumerable<Edge> Adj(int v)
+        protected IEnumerable<Edge> Adj(int v)
         {
             return _adj[v];
         }
 
-        public List<Edge> Edges()
+        public List<Edge> GetEdges()
         {
             var list = new List<Edge>();
             

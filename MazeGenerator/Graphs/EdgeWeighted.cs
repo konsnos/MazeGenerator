@@ -2,16 +2,12 @@ using System;
 
 namespace MazeGenerator.Graphs
 {
-    public class EdgeWeighted : IComparable<EdgeWeighted>
+    public class EdgeWeighted : Edge, IComparable<EdgeWeighted>
     {
-        public int Endpoint1 { get; }
-        public int Endpoint2 { get; }
         public float Weight { get; }
 
-        public EdgeWeighted(int endpoint1, int endpoint2, float weight)
+        public EdgeWeighted(int endpoint1, int endpoint2, float weight) : base(endpoint1, endpoint2)
         {
-            Endpoint1 = endpoint1;
-            Endpoint2 = endpoint2;
             Weight = weight;
         }
 
@@ -24,16 +20,9 @@ namespace MazeGenerator.Graphs
             return 0;
         }
 
-        public int Target(int vertex)
-        {
-            if (vertex == Endpoint1) return Endpoint2;
-            if (vertex == Endpoint2) return Endpoint1;
-            throw new Exception("Illegal endpoint");
-        }
-
         public override string ToString()
         {
-            return $"{Endpoint1:d}-{Endpoint2:d}";// {Weight:f5}";
+            return $"{Endpoint1:d}-{Endpoint2:d} {Weight:f5}";
         }
     }
 }

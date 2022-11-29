@@ -4,38 +4,22 @@ using System.Text;
 
 namespace MazeGenerator.Graphs
 {
-    public class GraphWeighted
+    public class GraphWeighted : Graph
     {
-        public int Vertices { get; }
-        private int _edges;
-        private LinkedList<EdgeWeighted>[] _adj;
-
 #if SET_SEED
         private static readonly Random _random = new Random(0);
 #else
         private static readonly Random _random = new Random();
 #endif
 
-        public GraphWeighted(int vertices)
+        public GraphWeighted(int vertices) : base(vertices)
         {
-            if (vertices < 0)
-                throw new Exception("Number of vertices in a Graph must be nonnegative");
-
-            Vertices = vertices;
             
-            _edges = 0;
-
-            _adj = new LinkedList<EdgeWeighted>[vertices];
-
-            for (int v = 0; v < vertices; v++)
-            {
-                _adj[v] = new LinkedList<EdgeWeighted>();
-            }
         }
 
-        public void AddEdge(int endpoint1, int endpoint2)
+        public override void AddEdge(int endpoint1, int endpoint2)
         {
-            var edge = new EdgeWeighted(endpoint1, endpoint2, 0/*(float)_random.NextDouble()*/);
+            var edge = new EdgeWeighted(endpoint1, endpoint2, (float)_random.NextDouble());
             AddEdge(edge);
         }
 
@@ -48,12 +32,7 @@ namespace MazeGenerator.Graphs
             _edges++;
         }
 
-        public IEnumerable<EdgeWeighted> Adj(int v)
-        {
-            return _adj[v];
-        }
-
-        public List<EdgeWeighted> Edges()
+        public new List<EdgeWeighted> GetEdges()
         {
             var list = new List<EdgeWeighted>();
             
@@ -65,12 +44,12 @@ namespace MazeGenerator.Graphs
                 {
                     if (edge.Target(vertexIndex) > vertexIndex)
                     {
-                        list.Add(edge);
+                        list.Add((EdgeWeighted)edge);
                     }
                     else if (edge.Target(vertexIndex) == vertexIndex)
                     {
                         if (selfLoops % 2 == 0) 
-                            list.Add(edge);
+                            list.Add((EdgeWeighted)edge);
                         selfLoops++;
                     }
                 }

@@ -17,7 +17,7 @@ namespace MazeGenerator
 
             // PrintEdges(spanningTree);
 
-            return GetMap(width, height, spanningTree);
+            return Kruskal.GetMap(width, height, spanningTree);
         }
 
         private static void PrintEdges(List<Edge> spanningTree)
@@ -35,34 +35,6 @@ namespace MazeGenerator
         private static int SortByVertex(Edge x, Edge y)
         {
             return x.Endpoint1.CompareTo(y.Endpoint1);
-        }
-
-        public static bool[,] GetMap(int width, int height, List<Edge> spanningTree)
-        {
-            var mapWidth = (width * 2) + 1;
-            var mapHeight = (height * 2) + 1;
-            
-            var verticesCoordinates = new GridCoordinates[width * height];
-            foreach (var edge in spanningTree)
-            {
-                verticesCoordinates[edge.Endpoint1] =
-                    new GridCoordinates(edge.Endpoint1 % width, edge.Endpoint1 / height);
-                verticesCoordinates[edge.Endpoint2] =
-                    new GridCoordinates(edge.Endpoint2 % width, edge.Endpoint2 / height);
-            }
-            
-            var map = new bool[mapWidth, mapHeight];
-            foreach (var edge in spanningTree)
-            {
-                var mapEdge = new MapEdge(verticesCoordinates[edge.Endpoint1], verticesCoordinates[edge.Endpoint2]);
-
-                foreach (var edgeCoordinate in mapEdge.GetAllEdgeCoordinates())
-                {
-                    map[edgeCoordinate.X, edgeCoordinate.Y] = true;
-                }
-            }
-
-            return map;
         }
 
         public static void PrintMap(bool[,] map)

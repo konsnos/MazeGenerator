@@ -33,7 +33,7 @@ namespace MazeGenerator.GenerationAlgorithms
 
         public static List<Edge> GetSpanningTree(Graph graph)
         {
-            var edges = graph.Edges();
+            var edges = graph.GetEdges();
             edges.Shuffle();
 
             int totalVertices = graph.Vertices;
@@ -53,6 +53,34 @@ namespace MazeGenerator.GenerationAlgorithms
             }
 
             return spanningTree;
+        }
+
+        public static bool[,] GetMap(int width, int height, List<Edge> spanningTree)
+        {
+            var mapWidth = (width * 2) + 1;
+            var mapHeight = (height * 2) + 1;
+            
+            var verticesCoordinates = new GridCoordinates[width * height];
+            foreach (var edge in spanningTree)
+            {
+                verticesCoordinates[edge.Endpoint1] =
+                    new GridCoordinates(edge.Endpoint1 % width, edge.Endpoint1 / height);
+                verticesCoordinates[edge.Endpoint2] =
+                    new GridCoordinates(edge.Endpoint2 % width, edge.Endpoint2 / height);
+            }
+            
+            var map = new bool[mapWidth, mapHeight];
+            foreach (var edge in spanningTree)
+            {
+                var mapEdge = new MapEdge(verticesCoordinates[edge.Endpoint1], verticesCoordinates[edge.Endpoint2]);
+
+                foreach (var edgeCoordinate in mapEdge.GetAllEdgeCoordinates())
+                {
+                    map[edgeCoordinate.X, edgeCoordinate.Y] = true;
+                }
+            }
+
+            return map;
         }
 
         private static int CompareEdges(EdgeWeighted x, EdgeWeighted y)

@@ -53,6 +53,6 @@ public class KruskalModules
     [Benchmark]
     public void GetKruskalMap()
     {
-        Mazes.GetMap(Size, Size, _edges);
+        Kruskal.GetMap(Size, Size, _edges);
     }
 }

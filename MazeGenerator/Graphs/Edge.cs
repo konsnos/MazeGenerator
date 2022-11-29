@@ -22,7 +22,7 @@ namespace MazeGenerator.Graphs
 
         public override string ToString()
         {
-            return $"{Endpoint1:d}-{Endpoint2:d}";// {Weight:f5}";
+            return $"{Endpoint1:d}-{Endpoint2:d}";
         }
     }
 }
