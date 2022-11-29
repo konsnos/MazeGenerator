@@ -16,6 +16,12 @@ namespace MazeGenerator.Graphs
         {
             
         }
+        
+        public void AddEdge(int endpoint1, int endpoint2, float ratio)
+        {
+            var edge = new EdgeWeighted(endpoint1, endpoint2, (float)_random.NextDouble() * ratio);
+            AddEdge(edge);
+        }
 
         public override void AddEdge(int endpoint1, int endpoint2)
         {

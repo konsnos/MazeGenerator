@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using System.Text;
 using MazeGenerator.GenerationAlgorithms;
@@ -12,12 +13,16 @@ namespace MazeGenerator
         public static bool[,] GetKruskal(int width, int height)
         {
             var graph = Kruskal.GenerateGraph(width, height);
-            // Console.Write(graph.ToString());
             var spanningTree = Kruskal.GetSpanningTree(graph);
-
-            // PrintEdges(spanningTree);
-
             return Kruskal.GetMap(width, height, spanningTree);
+        }
+
+        public static bool[,] GetKruskalWithPassingBias(int width, int height, Kruskal.BiasDirection biasDirection,
+            float biasRatio)
+        {
+            var graph = Kruskal.GenerateGraph(width, height, biasDirection, biasRatio);
+            var spanningTree = Kruskal.GetSpanningTree(graph);
+            return Kruskal.GetMap(width, height, spanningTree.ToList<Edge>());
         }
 
         private static void PrintEdges(List<Edge> spanningTree)
@@ -41,7 +46,7 @@ namespace MazeGenerator
         {
             var mapHeight = map.GetLength(1);
             var mapWidth = map.GetLength(0);
-            
+
             var stringBuilder = new StringBuilder();
 
             for (int y = 0; y < mapHeight; y++)
@@ -72,10 +77,10 @@ namespace MazeGenerator
 
     public readonly struct MapEdge
     {
-        public GridCoordinates MapCoordinatesFrom { get; }
-        public GridCoordinates MapCoordinatesTo { get; }
-        public EdgeDirection EdgeDirection { get; }
-        
+        private GridCoordinates MapCoordinatesFrom { get; }
+        private GridCoordinates MapCoordinatesTo { get; }
+        private EdgeDirection EdgeDirection { get; }
+
         public MapEdge(GridCoordinates vertexCoordinatesFrom, GridCoordinates vertexCoordinatesTo)
         {
             MapCoordinatesFrom =

@@ -13,11 +13,7 @@ namespace MazeGenerator.Graphs
 
         public int CompareTo(EdgeWeighted other)
         {
-            if (Weight < other.Weight)
-                return -1;
-            if (Weight > other.Weight)
-                return +1;
-            return 0;
+            return Weight.CompareTo(other.Weight);
         }
 
         public override string ToString()
