@@ -22,37 +22,41 @@ public class KruskalModules
     [Params(50)]
     public int Size { get; set; }
 
+    private Kruskal _kruskal;
     private Graph _graph;
     private List<Edge> _edges;
 
     [Benchmark]
     public void GetKruskalGraph()
     {
-        _ = Kruskal.GenerateGraph(Size, Size);
+        var kruskal = new Kruskal(Size, Size);
+        _ = kruskal.GenerateGraph();
     }
 
     [GlobalSetup(Target = nameof(GetKruskalSpanningTree))]
     public void GlobalSetupGetKruskalSpanningTree()
     {
-        _graph = Kruskal.GenerateGraph(Size, Size);
+        _kruskal = new Kruskal(Size, Size);
+        _graph = _kruskal.GenerateGraph();
     }
 
     [Benchmark]
     public void GetKruskalSpanningTree()
     {
-        Kruskal.GetSpanningTree(_graph);
+        _kruskal.GetSpanningTree(_graph);
     }
     
     [GlobalSetup(Target = nameof(GetKruskalMap))]
     public void GlobalSetupGetKruskalMap()
     {
-        _graph = Kruskal.GenerateGraph(Size, Size);
-        _edges = Kruskal.GetSpanningTree(_graph);
+        _kruskal = new Kruskal(Size, Size);
+        _graph = _kruskal.GenerateGraph();
+        _edges = _kruskal.GetSpanningTree(_graph);
     }
 
     [Benchmark]
     public void GetKruskalMap()
     {
-        Kruskal.GetMap(Size, Size, _edges);
+        _kruskal.GetMap(_edges);
     }
 }

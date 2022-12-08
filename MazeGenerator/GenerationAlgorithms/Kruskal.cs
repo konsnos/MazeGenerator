@@ -5,22 +5,25 @@ namespace MazeGenerator.GenerationAlgorithms
 {
     public class Kruskal
     {
-        public enum BiasDirection
-        {
-            Horizontal,
-            Vertical
-        }
+        private int _width;
+        private int _height;
 
-        public static GraphWeighted GenerateGraph(int width, int height, BiasDirection biasDirection, float biasRatio)
+        public Kruskal(int gridWidth, int gridHeight)
         {
-            var graph = new GraphWeighted(width * height);
+            _width = gridWidth;
+            _height = gridHeight;
+        }
+        
+        public GraphWeighted GenerateGraph(BiasDirection biasDirection, float biasRatio)
+        {
+            var graph = new GraphWeighted(_width * _height);
 
             // add edges
-            int[,] vertices = new int[width, height];
+            int[,] vertices = new int[_width, _height];
             int index = 0;
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < _height; y++)
             {
-                for (int x = 0; x < width; x++)
+                for (int x = 0; x < _width; x++)
                 {
                     vertices[x, y] = index;
                     // left
@@ -38,16 +41,16 @@ namespace MazeGenerator.GenerationAlgorithms
             return graph;
         }
 
-        public static Graph GenerateGraph(int width, int height)
+        public Graph GenerateGraph()
         {
-            var graph = new Graph(width * height);
+            var graph = new Graph(_width * _height);
 
             // add edges
-            int[,] vertices = new int[width, height];
+            int[,] vertices = new int[_width, _height];
             int index = 0;
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < _height; y++)
             {
-                for (int x = 0; x < width; x++)
+                for (int x = 0; x < _width; x++)
                 {
                     vertices[x, y] = index;
                     // left
@@ -63,7 +66,7 @@ namespace MazeGenerator.GenerationAlgorithms
             return graph;
         }
 
-        public static List<EdgeWeighted> GetSpanningTree(GraphWeighted graph)
+        public List<EdgeWeighted> GetSpanningTree(GraphWeighted graph)
         {
             var edges = graph.GetEdges();
             edges.Sort();
@@ -87,7 +90,7 @@ namespace MazeGenerator.GenerationAlgorithms
             return spanningTree;
         }
 
-        public static List<Edge> GetSpanningTree(Graph graph)
+        public List<Edge> GetSpanningTree(Graph graph)
         {
             var edges = graph.GetEdges();
             edges.Sort();
@@ -111,16 +114,29 @@ namespace MazeGenerator.GenerationAlgorithms
             return spanningTree;
         }
 
-        public static bool[,] GetMap(int width, int height, List<Edge> spanningTree)
+        public bool[,] GetMap(List<Edge> spanningTree)
         {
-            var mapWidth = (width * 2) + 1;
-            var mapHeight = (height * 2) + 1;
+            var verticesCoordinates = GetVerticesCoordinates(spanningTree);
 
-            var verticesCoordinates = GetVerticesCoordinates(width, height, spanningTree);
-
+            var mapWidth = (_width * 2) + 1;
+            var mapHeight = (_height * 2) + 1;
             var map = GetMapFromVerticesCoordinates(spanningTree, mapWidth, mapHeight, verticesCoordinates);
 
             return map;
+        }
+
+        private GridCoordinates[] GetVerticesCoordinates(List<Edge> spanningTree)
+        {
+            var verticesCoordinates = new GridCoordinates[_width * _height];
+            foreach (var edge in spanningTree)
+            {
+                verticesCoordinates[edge.Endpoint1] =
+                    new GridCoordinates(edge.Endpoint1 % _width, edge.Endpoint1 / _height);
+                verticesCoordinates[edge.Endpoint2] =
+                    new GridCoordinates(edge.Endpoint2 % _width, edge.Endpoint2 / _height);
+            }
+
+            return verticesCoordinates;
         }
 
         private static bool[,] GetMapFromVerticesCoordinates(List<Edge> spanningTree, int mapWidth, int mapHeight,
@@ -140,23 +156,12 @@ namespace MazeGenerator.GenerationAlgorithms
             return map;
         }
 
-        private static GridCoordinates[] GetVerticesCoordinates(int width, int height, List<Edge> spanningTree)
+        private static int CompareByWeight(EdgeWeighted x, EdgeWeighted y) => x.Weight.CompareTo(y.Weight);
+        
+        public enum BiasDirection
         {
-            var verticesCoordinates = new GridCoordinates[width * height];
-            foreach (var edge in spanningTree)
-            {
-                verticesCoordinates[edge.Endpoint1] =
-                    new GridCoordinates(edge.Endpoint1 % width, edge.Endpoint1 / height);
-                verticesCoordinates[edge.Endpoint2] =
-                    new GridCoordinates(edge.Endpoint2 % width, edge.Endpoint2 / height);
-            }
-
-            return verticesCoordinates;
-        }
-
-        private static int CompareEdges(EdgeWeighted x, EdgeWeighted y)
-        {
-            return x.Weight.CompareTo(y.Weight);
+            Horizontal,
+            Vertical
         }
     }
 }

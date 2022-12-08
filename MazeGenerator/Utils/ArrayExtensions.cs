@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MazeGenerator.Utils
 {
-    public static class Extensions
+    public static class ArrayExtensions
     {
 #if SET_SEED
         private static readonly Random _random = new Random(0);
