@@ -5,4 +5,4 @@ using MazeGeneratorBenchmark;
 
 // var benchmarkArgs = new string[] {"-f", "MazeGeneratorBenchmark.KruskalModules.GetKruskalMap"};
 // var benchmarkArgs = new string[] {"-f", "MazeGeneratorBenchmark.KruskalOverall.Kruskal"};
-var summary = BenchmarkSwitcher.FromAssembly(typeof(KruskalOverall).Assembly).Run(args);
+var summary = BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args);
