@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using MazeGenerator.Graphs;
+using MazeGenerator.Utils;
 
 namespace MazeGenerator.GenerationAlgorithms
 {
@@ -83,6 +84,7 @@ namespace MazeGenerator.GenerationAlgorithms
                     continue;
 
                 spanningTree.Add(edge);
+                edgeCount++;
                 if (edgeCount == totalVertices - 1)
                     break;
             }
@@ -93,7 +95,7 @@ namespace MazeGenerator.GenerationAlgorithms
         public List<Edge> GetSpanningTree(Graph graph)
         {
             var edges = graph.GetEdges();
-            edges.Sort();
+            edges.Shuffle();
 
             int totalVertices = graph.Vertices;
             var cycleDetector = new CycleDetector(totalVertices);
@@ -107,6 +109,7 @@ namespace MazeGenerator.GenerationAlgorithms
                     continue;
 
                 spanningTree.Add(edge);
+                edgeCount++;
                 if (edgeCount == totalVertices - 1)
                     break;
             }
