@@ -24,5 +24,7 @@ namespace MazeGenerator.Graphs
         {
             return $"{Endpoint1:d}-{Endpoint2:d}";
         }
+
+        public static int ComparisonByVertex(Edge x, Edge y) => x.Endpoint1.CompareTo(y.Endpoint1);
     }
 }

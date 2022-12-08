@@ -27,7 +27,7 @@ namespace MazeGenerator
 
         private static void PrintEdges(List<Edge> spanningTree)
         {
-            spanningTree.Sort(SortByVertex);
+            spanningTree.Sort(Edge.ComparisonByVertex);
             var stringBuilder = new StringBuilder();
             foreach (var edge in spanningTree)
             {
@@ -35,11 +35,6 @@ namespace MazeGenerator
             }
 
             Console.Write(stringBuilder);
-        }
-
-        private static int SortByVertex(Edge x, Edge y)
-        {
-            return x.Endpoint1.CompareTo(y.Endpoint1);
         }
 
         public static void PrintMap(bool[,] map)
