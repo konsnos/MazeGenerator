@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using MazeGenerator.Graphs;
-using MazeGenerator.Utils;
 
 namespace MazeGenerator.GenerationAlgorithms
 {
