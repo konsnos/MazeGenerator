@@ -23,32 +23,26 @@ namespace MazeGenerator.GenerationAlgorithms
 
         private int Find(int node)
         {
-            int parent = nodes[node].ParentNode;
-            if (parent.Equals(node))
+            while (true) // Avoid recursive call
             {
-                return node;
-            }
-            else
-            {
-                //todo: convert recursion to iteration
-                return Find(parent);
+                int parent = nodes[node].ParentNode;
+                if (parent.Equals(node)) return node;
+                node = parent;
             }
         }
 
         private int PathCompressionFind(int node)
         {
-            DisjointSetInfo setInfo = nodes[node];
-            int parent = setInfo.ParentNode;
+            var disjointSetInfo = nodes[node];
+            int parent = disjointSetInfo.ParentNode;
             if (parent.Equals(node))
             {
                 return node;
             }
-            else
-            {
-                int parentNode = Find(parent);
-                setInfo.ParentNode = parentNode;
-                return parentNode;
-            }
+
+            int parentNode = Find(parent);
+            disjointSetInfo.ParentNode = parentNode;
+            return parentNode;
         }
 
         private void Union(int rootU, int rootV)
