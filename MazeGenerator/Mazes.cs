@@ -28,7 +28,7 @@ namespace MazeGenerator
 
         public static bool[,] GetRecursiveBacktracking(int width, int height)
         {
-            var recursiveBacktracking = new RecursiveBacktracking(10, 10);
+            var recursiveBacktracking = new RecursiveBacktracking(width, height);
             return recursiveBacktracking.GetMap();
         }
 
