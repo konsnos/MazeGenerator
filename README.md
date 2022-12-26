@@ -4,8 +4,10 @@ Maze generator plug in in C#
 
 TODO:
 * Algorithms
-    * Recursive Backtracking
     * "Hunt and Kill"
+* Pick start and end
+* Non-perfect mazes
 
-* Start and finish points
-    * Pathfinding
+* Pathfinding
+    * Random mouse
+    * Wall follower

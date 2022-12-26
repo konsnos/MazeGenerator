@@ -7,7 +7,7 @@ namespace MazeGeneratorBenchmark;
 
 public class KruskalOverall
 {
-    [Params(50, 100)]
+    [Params(100, 200)]
     public int Size { get; set; }
     
     [Benchmark]

@@ -5,7 +5,7 @@ namespace MazeGeneratorBenchmark;
 
 public class RecursiveBacktrackingOverall
 {
-    [Params(50, 100)]
+    [Params(100, 200)]
     public int Size { get; set; }
 
     [Benchmark]

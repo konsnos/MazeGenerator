@@ -6,8 +6,8 @@ namespace MazeGenerator.GenerationAlgorithms
 {
     public class Kruskal
     {
-        private int _width;
-        private int _height;
+        private readonly int _width;
+        private readonly int _height;
 
         public Kruskal(int gridWidth, int gridHeight)
         {
