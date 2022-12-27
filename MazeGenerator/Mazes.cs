@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using MazeGenerator.GenerationAlgorithms;
 using MazeGenerator.Graphs;
@@ -11,19 +10,15 @@ namespace MazeGenerator
     {
         public static bool[,] GetKruskal(int width, int height)
         {
-            var kruskal = new Kruskal(width, height);
-            var graph = kruskal.GenerateGraph();
-            var spanningTree = kruskal.GetSpanningTree(graph);
-            return kruskal.GetMap(spanningTree);
+            var kruskal = new KruskalRandom(width, height);
+            return kruskal.GetMap();
         }
 
-        public static bool[,] GetKruskalWithPassingBias(int width, int height, Kruskal.BiasDirection biasDirection,
+        public static bool[,] GetKruskalWithPassingBias(int width, int height, KruskalWeighted.BiasDirection biasDirection,
             float biasRatio)
         {
-            var kruskal = new Kruskal(width, height);
-            var graph = kruskal.GenerateGraph(biasDirection, biasRatio);
-            var spanningTree = kruskal.GetSpanningTree(graph);
-            return kruskal.GetMap(spanningTree.ToList<Edge>());
+            var kruskal = new KruskalWeighted(width, height, biasDirection, biasRatio);
+            return kruskal.GetMap();
         }
 
         public static bool[,] GetRecursiveBacktracking(int width, int height)
