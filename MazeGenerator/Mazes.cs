@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 using MazeGenerator.GenerationAlgorithms;
-using MazeGenerator.Graphs;
 
 namespace MazeGenerator
 {
@@ -27,16 +25,10 @@ namespace MazeGenerator
             return recursiveBacktracking.GetMap();
         }
 
-        private static void PrintEdges(List<Edge> spanningTree)
+        public static bool[,] GetHuntAndKill(int width, int height)
         {
-            spanningTree.Sort(Edge.ComparisonByVertex);
-            var stringBuilder = new StringBuilder();
-            foreach (var edge in spanningTree)
-            {
-                stringBuilder.AppendLine(edge.ToString());
-            }
-
-            Console.Write(stringBuilder);
+            var huntAndKill = new HuntAndKill(width, height);
+            return huntAndKill.GetMap();
         }
 
         public static void PrintMap(bool[,] map)

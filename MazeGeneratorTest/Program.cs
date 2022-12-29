@@ -1,7 +1,10 @@
 ﻿using MazeGenerator;
 using MazeGenerator.GenerationAlgorithms;
 
-// var map = Mazes.GetKruskal(10, 10);
-var map = Mazes.GetKruskalWithPassingBias(10, 10, KruskalWeighted.BiasDirection.Horizontal, .5f);
-// var map = Mazes.GetRecursiveBacktracking(10, 10);
+const int width = 10;
+const int height = 10;
+// var map = Mazes.GetKruskal(width, height);
+// var map = Mazes.GetKruskalWithPassingBias(width, height, KruskalWeighted.BiasDirection.Horizontal, .5f);
+// var map = Mazes.GetRecursiveBacktracking(width, height);
+var map = Mazes.GetHuntAndKill(width, height);
 Mazes.PrintMap(map);

@@ -3,7 +3,7 @@ using MazeGenerator.Graphs;
 
 namespace MazeGenerator.GenerationAlgorithms
 {
-    public abstract class KruskalBase<GraphType, EdgeType> 
+    public abstract class KruskalBase<GraphType, EdgeType> : IHasMap
         where GraphType : Graph
         where EdgeType : Edge
     {

@@ -2,7 +2,7 @@ using MazeGenerator.Utils;
 
 namespace MazeGenerator.GenerationAlgorithms
 {
-    public class RecursiveBacktracking
+    public class RecursiveBacktracking : IHasMap
     {
         public int[,] Grid { get; }
         private readonly int _width;
@@ -69,13 +69,5 @@ namespace MazeGenerator.GenerationAlgorithms
 
             return map;
         }
-    }
-
-    public enum Direction
-    {
-        Top = 1,
-        Bottom = 2,
-        Right = 4,
-        Left = 8
     }
 }

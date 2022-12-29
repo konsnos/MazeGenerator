@@ -33,8 +33,8 @@ namespace MazeGenerator.Utils
         {
             return direction switch
             {
-                Direction.Top => 1,
-                Direction.Bottom => -1,
+                Direction.Top => -1,
+                Direction.Bottom => 1,
                 Direction.Right => 0,
                 Direction.Left => 0,
                 _ => throw new ArgumentOutOfRangeException(nameof(direction), direction, null)
