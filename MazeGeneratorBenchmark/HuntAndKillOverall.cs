@@ -4,14 +4,14 @@ using MazeGenerator;
 namespace MazeGeneratorBenchmark;
 
 [MemoryDiagnoser]
-public class RecursiveBacktrackingOverall
+public class HuntAndKillOverall
 {
     [Params(100, 200)]
     public int Size { get; set; }
 
     [Benchmark]
-    public void RecursiveBacktracking()
+    public void HuntAndKill()
     {
-        _ = Mazes.GetRecursiveBacktracking(Size, Size);
+        _ = Mazes.GetHuntAndKill(Size, Size);
     }
 }

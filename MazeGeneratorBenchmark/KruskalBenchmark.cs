@@ -4,6 +4,7 @@ using MazeGenerator.GenerationAlgorithms;
 
 namespace MazeGeneratorBenchmark;
 
+[MemoryDiagnoser]
 public class KruskalOverall
 {
     [Params(100, 200)]
