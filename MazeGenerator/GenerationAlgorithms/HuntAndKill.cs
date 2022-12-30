@@ -44,7 +44,7 @@ namespace MazeGenerator.GenerationAlgorithms
             bool walking;
             do
             {
-                walking = WalkTile(x, y, ref x, ref y); //todo: debug this
+                walking = WalkTile(x, y, ref x, ref y);
             } while (walking);
         }
 
