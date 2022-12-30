@@ -2,7 +2,7 @@ using MazeGenerator.Utils;
 
 namespace MazeGenerator.GenerationAlgorithms
 {
-    public class RecursiveBacktracking : IHasMap
+    public class RecursiveBacktracking : IMap
     {
         public int[,] Grid { get; }
         private readonly int _width;

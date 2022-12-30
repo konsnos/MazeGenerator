@@ -10,7 +10,7 @@ namespace MazeGenerator.GenerationAlgorithms
     /// windy passages that are reminiscent of the recursive backtracking algorithm.
     /// Both algorithms produce mazes with fewer dead-ends than most of the other algorithms.
     /// </summary>
-    public class HuntAndKill : IHasMap
+    public class HuntAndKill : IMap
     {
         public int[,] Grid { get; }
         private readonly int _width;

@@ -1,6 +1,6 @@
 namespace MazeGenerator.GenerationAlgorithms
 {
-    public interface IHasMap
+    public interface IMap
     {
         public bool[,] GetMap();
     }
