@@ -1,6 +1,6 @@
 namespace MazeGenerator
 {
-    public struct GridCoordinates
+    public readonly struct GridCoordinates
     {
         public int X { get; }
         public int Y { get; }

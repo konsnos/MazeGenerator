@@ -1,6 +1,6 @@
 namespace MazeGenerator.Utils
 {
-    public class DisjointSetInfo
+    public struct DisjointSetInfo
     {
         public int ParentNode { set; get; }
 

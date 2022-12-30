@@ -33,9 +33,9 @@ namespace MazeGenerator.Graphs
         {
             int endpoint1 = edgeWeighted.Endpoint1;
             int endpoint2 = edgeWeighted.Endpoint2;
-            _adj[endpoint1].AddFirst(edgeWeighted);
-            _adj[endpoint2].AddFirst(edgeWeighted);
-            _edges++;
+            _edges[endpoint1].AddFirst(edgeWeighted);
+            _edges[endpoint2].AddFirst(edgeWeighted);
+            _edgesCount++;
         }
 
         public new List<EdgeWeighted> GetEdges()
@@ -46,7 +46,7 @@ namespace MazeGenerator.Graphs
             {
                 int selfLoops = 0;
 
-                foreach (var edge in Adj(vertexIndex))
+                foreach (var edge in _edges[vertexIndex])
                 {
                     if (edge.Target(vertexIndex) > vertexIndex)
                     {
@@ -70,13 +70,13 @@ namespace MazeGenerator.Graphs
 
             var stringBuilder = new StringBuilder();
 
-            stringBuilder.Append($"Vertices:{Vertices}, Edges: {_edges}{newline}");
+            stringBuilder.Append($"Vertices:{Vertices}, Edges: {_edgesCount}{newline}");
 
             for (int v = 0; v < Vertices; v++)
             {
                 stringBuilder.Append($"Vertex {v} edges: ");
                 
-                foreach (var edge in _adj[v])
+                foreach (var edge in _edges[v])
                 {
                     stringBuilder.Append($"{edge}  ");
                 }

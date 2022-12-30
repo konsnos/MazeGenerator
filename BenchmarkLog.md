@@ -13,32 +13,12 @@ Apple M1, 1 CPU, 8 logical and 8 physical cores
 | HuntAndKill |  200 | 127.032 ms | 1.8947 ms | 1.5821 ms | 750.0000 | 2343.94 KB |
 
 
-
-// * Summary *
-
-BenchmarkDotNet=v0.13.2, OS=macOS 13.1 (22C65) [Darwin 22.2.0]
-Apple M1, 1 CPU, 8 logical and 8 physical cores
-.NET SDK=6.0.101
-  [Host]     : .NET 6.0.1 (6.0.121.56705), Arm64 RyuJIT AdvSIMD
-  DefaultJob : .NET 6.0.1 (6.0.121.56705), Arm64 RyuJIT AdvSIMD
-
-
-|             Method | Size |     Mean |    Error |   StdDev |      Gen0 |      Gen1 |     Gen2 | Allocated |
-|------------------- |----- |---------:|---------:|---------:|----------:|----------:|---------:|----------:|
-|      KruskalRandom |  100 | 11.43 ms | 0.095 ms | 0.084 ms | 1546.8750 |  703.1250 | 343.7500 |   4.85 MB |
-| KruskalPassingBias |  100 | 14.55 ms | 0.142 ms | 0.118 ms | 1531.2500 |  734.3750 | 359.3750 |      5 MB |
-|      KruskalRandom |  200 | 53.48 ms | 0.710 ms | 0.729 ms | 4300.0000 | 2000.0000 | 800.0000 |  19.44 MB |
-| KruskalPassingBias |  200 | 71.98 ms | 1.433 ms | 3.971 ms | 4000.0000 | 1750.0000 | 750.0000 |  20.04 MB |
-
-
-
-// * Summary *
-
-BenchmarkDotNet=v0.13.2, OS=macOS 13.1 (22C65) [Darwin 22.2.0]
-Apple M1, 1 CPU, 8 logical and 8 physical cores
-.NET SDK=6.0.101
-  [Host]     : .NET 6.0.1 (6.0.121.56705), Arm64 RyuJIT AdvSIMD
-  DefaultJob : .NET 6.0.1 (6.0.121.56705), Arm64 RyuJIT AdvSIMD
+|             Method | Size |      Mean |     Error |    StdDev |    Median |      Gen0 |      Gen1 |     Gen2 | Allocated |
+|------------------- |----- |----------:|----------:|----------:|----------:|----------:|----------:|---------:|----------:|
+|      KruskalRandom |  100 |  8.735 ms | 0.0160 ms | 0.0142 ms |  8.734 ms | 1484.3750 |  656.2500 | 328.1250 |   4.16 MB |
+| KruskalPassingBias |  100 | 12.243 ms | 0.1349 ms | 0.1262 ms | 12.227 ms | 1531.2500 |  718.7500 | 359.3750 |   4.31 MB |
+|      KruskalRandom |  200 | 44.201 ms | 1.0401 ms | 3.0669 ms | 45.206 ms | 3666.6667 | 1916.6667 | 916.6667 |  16.69 MB |
+| KruskalPassingBias |  200 | 57.480 ms | 0.2017 ms | 0.1887 ms | 57.512 ms | 3666.6667 | 1888.8889 | 888.8889 |   17.3 MB |
 
 
 |                Method | Size |     Mean |     Error |    StdDev |     Gen0 |     Gen1 |    Gen2 |  Allocated |
