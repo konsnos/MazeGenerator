@@ -13,12 +13,12 @@ Apple M1, 1 CPU, 8 logical and 8 physical cores
 | HuntAndKill |  200 | 127.032 ms | 1.8947 ms | 1.5821 ms | 750.0000 | 2343.94 KB |
 
 
-|             Method | Size |      Mean |     Error |    StdDev |    Median |      Gen0 |      Gen1 |     Gen2 | Allocated |
-|------------------- |----- |----------:|----------:|----------:|----------:|----------:|----------:|---------:|----------:|
-|      KruskalRandom |  100 |  8.735 ms | 0.0160 ms | 0.0142 ms |  8.734 ms | 1484.3750 |  656.2500 | 328.1250 |   4.16 MB |
-| KruskalPassingBias |  100 | 12.243 ms | 0.1349 ms | 0.1262 ms | 12.227 ms | 1531.2500 |  718.7500 | 359.3750 |   4.31 MB |
-|      KruskalRandom |  200 | 44.201 ms | 1.0401 ms | 3.0669 ms | 45.206 ms | 3666.6667 | 1916.6667 | 916.6667 |  16.69 MB |
-| KruskalPassingBias |  200 | 57.480 ms | 0.2017 ms | 0.1887 ms | 57.512 ms | 3666.6667 | 1888.8889 | 888.8889 |   17.3 MB |
+|             Method | Size |      Mean |     Error |    StdDev |    Median |      Gen0 |      Gen1 |      Gen2 | Allocated |
+|------------------- |----- |----------:|----------:|----------:|----------:|----------:|----------:|----------:|----------:|
+|      KruskalRandom |  100 |  6.369 ms | 0.0861 ms | 0.0806 ms |  6.361 ms | 1648.4375 |  804.6875 |  398.4375 |   4.39 MB |
+| KruskalPassingBias |  100 |  8.601 ms | 0.1694 ms | 0.2536 ms |  8.688 ms | 1375.0000 |  640.6250 |  312.5000 |   4.54 MB |
+|      KruskalRandom |  200 | 30.380 ms | 0.6042 ms | 1.5047 ms | 29.813 ms | 3656.2500 | 1875.0000 |  875.0000 |  17.61 MB |
+| KruskalPassingBias |  200 | 41.774 ms | 0.8347 ms | 1.4173 ms | 41.420 ms | 3307.6923 | 1692.3077 | 1000.0000 |  18.21 MB |
 
 
 |                Method | Size |     Mean |     Error |    StdDev |     Gen0 |     Gen1 |    Gen2 |  Allocated |

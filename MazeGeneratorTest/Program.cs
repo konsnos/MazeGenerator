@@ -11,6 +11,7 @@ do
     Console.WriteLine("Repeat (y)?");
     var readKey = Console.ReadKey();
     repeat = readKey.KeyChar.Equals('y');
+    Console.WriteLine();
 } while (repeat);
 
 return 0;

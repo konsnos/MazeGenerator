@@ -1,23 +1,17 @@
-using System.Collections.Generic;
 using MazeGenerator.Utils;
 
 namespace MazeGenerator.GenerationAlgorithms
 {
     public class CycleDetector
     {
-        private List<DisjointSetInfo> nodes;
+        private DisjointSetInfo[] nodes;
 
         public CycleDetector(int totalNodes)
         {
-            InitDisJointSets(totalNodes);
-        }
-
-        private void InitDisJointSets(int totalNodes)
-        {
-            nodes = new List<DisjointSetInfo>(totalNodes);
+            nodes = new DisjointSetInfo[totalNodes];
             for (int i = 0; i < totalNodes; i++)
             {
-                nodes.Add(new DisjointSetInfo(i));
+                nodes[i] = new DisjointSetInfo(i);
             }
         }
 
