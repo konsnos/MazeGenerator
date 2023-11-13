@@ -1,4 +1,5 @@
 ﻿using MazeGenerator;
+using MazeGenerator.Solvers;
 
 if (!GetMazeSize(out int width, out int height)) return 1;
 
@@ -16,10 +17,11 @@ do
 
 return 0;
 
+// Methods
 bool GetMazeSize(out int width, out int height)
 {
     Console.WriteLine("What size width and height do you want the maze (split with space)?");
-    string input = Console.ReadLine();
+    var input = Console.ReadLine();
 
     var sizes = input.Split(" ");
     if (sizes.Length != 2)
@@ -51,15 +53,13 @@ bool GetAlgorithm(out int selection)
 {
     Console.WriteLine(
         "Select generation algorithm\n0. Kruskal\n1. Kruskal Biased\n2. Recursive Backtracking\n3. Hunt And Kill");
-    string algorithmSelectionString = Console.ReadLine();
+    var algorithmSelectionString = Console.ReadLine();
     bool successfulAlgorithm = int.TryParse(algorithmSelectionString, out selection);
+
+    if (successfulAlgorithm) return true;
     
-    if (!successfulAlgorithm)
-    {
-        Console.WriteLine("Couldn't parse input");
-        return false;
-    }
-    return true;
+    Console.WriteLine("Couldn't parse input");
+    return false;
 }
 
 void PrintMap()
@@ -86,5 +86,31 @@ void PrintMap()
             break;
     }
 
-    Mazes.PrintMap(map);
+    // Mazes.PrintMap(map);
+    
+    CalculateEntryAndExit(map);
+
+}
+
+void CalculateEntryAndExit(bool[,] map)
+{
+    var entryExitSearch = new EntryExitSearch(map);
+    var gridCoordinates = entryExitSearch.GetEntryAndExit();
+    map[gridCoordinates[0].X, gridCoordinates[0].Y] = true;
+    map[gridCoordinates[1].X, gridCoordinates[1].Y] = true;
+    
+    // Mazes.PrintMap(map, gridCoordinates[0], gridCoordinates[1]);
+    
+    var breadthFirstSearch = new BreadthFirstSearch(map, gridCoordinates[0], gridCoordinates[1]);
+    var pathInQueue = breadthFirstSearch.GetPath();
+
+    if (pathInQueue != null)
+    {
+        var path = pathInQueue.GetPath();
+        Mazes.PrintMap(map, gridCoordinates[0], gridCoordinates[1], path);
+    }
+    else
+    {
+        Mazes.PrintMap(map, gridCoordinates[0], gridCoordinates[1]);
+    }
 }

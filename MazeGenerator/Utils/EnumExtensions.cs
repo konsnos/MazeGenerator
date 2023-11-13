@@ -1,5 +1,4 @@
 using System;
-using MazeGenerator.GenerationAlgorithms;
 
 namespace MazeGenerator.Utils
 {

@@ -1,17 +1,15 @@
-using MazeGenerator.Utils;
-
-namespace MazeGenerator.GenerationAlgorithms
+namespace MazeGenerator.Utils
 {
     public class CycleDetector
     {
-        private DisjointSetInfo[] nodes;
+        private readonly DisjointSetInfo[] _nodes;
 
         public CycleDetector(int totalNodes)
         {
-            nodes = new DisjointSetInfo[totalNodes];
+            _nodes = new DisjointSetInfo[totalNodes];
             for (int i = 0; i < totalNodes; i++)
             {
-                nodes[i] = new DisjointSetInfo(i);
+                _nodes[i] = new DisjointSetInfo(i);
             }
         }
 
@@ -19,7 +17,7 @@ namespace MazeGenerator.GenerationAlgorithms
         {
             while (true) // Avoid recursive call
             {
-                int parent = nodes[node].ParentNode;
+                int parent = _nodes[node].ParentNode;
                 if (parent.Equals(node)) return node;
                 node = parent;
             }
@@ -27,7 +25,7 @@ namespace MazeGenerator.GenerationAlgorithms
 
         private int PathCompressionFind(int node)
         {
-            var disjointSetInfo = nodes[node];
+            var disjointSetInfo = _nodes[node];
             int parent = disjointSetInfo.ParentNode;
             if (parent.Equals(node))
             {
@@ -41,14 +39,14 @@ namespace MazeGenerator.GenerationAlgorithms
 
         private void Union(int rootU, int rootV)
         {
-            var setInfoU = nodes[rootU];
+            var setInfoU = _nodes[rootU];
             setInfoU.ParentNode = rootV;
         }
 
         private void UnionByRank(int rootU, int rootV)
         {
-            var setInfoU = nodes[rootU];
-            var setInfoV = nodes[rootV];
+            var setInfoU = _nodes[rootU];
+            var setInfoV = _nodes[rootV];
             int rankU = setInfoU.Rank;
             int rankV = setInfoV.Rank;
             if (rankU < rankV)

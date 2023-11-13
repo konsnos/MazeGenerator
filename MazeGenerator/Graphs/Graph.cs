@@ -7,8 +7,8 @@ namespace MazeGenerator.Graphs
     public class Graph
     {
         public int Vertices { get; }
-        protected int _edgesCount;
-        protected LinkedList<Edge>[] _edges;
+        protected int EdgesCount;
+        protected LinkedList<Edge>[] Edges;
 
         public Graph(int vertices)
         {
@@ -17,13 +17,13 @@ namespace MazeGenerator.Graphs
 
             Vertices = vertices;
             
-            _edgesCount = 0;
+            EdgesCount = 0;
 
-            _edges = new LinkedList<Edge>[vertices];
+            Edges = new LinkedList<Edge>[vertices];
 
             for (int v = 0; v < vertices; v++)
             {
-                _edges[v] = new LinkedList<Edge>();
+                Edges[v] = new LinkedList<Edge>();
             }
         }
 
@@ -37,9 +37,9 @@ namespace MazeGenerator.Graphs
         {
             int endpoint1 = edge.Endpoint1;
             int endpoint2 = edge.Endpoint2;
-            _edges[endpoint1].AddFirst(edge);
-            _edges[endpoint2].AddFirst(edge);
-            _edgesCount++;
+            Edges[endpoint1].AddFirst(edge);
+            Edges[endpoint2].AddFirst(edge);
+            EdgesCount++;
         }
 
         public List<Edge> GetEdges()
@@ -50,7 +50,7 @@ namespace MazeGenerator.Graphs
             {
                 int selfLoops = 0;
 
-                foreach (var edge in _edges[vertexIndex])
+                foreach (var edge in Edges[vertexIndex])
                 {
                     if (edge.Target(vertexIndex) > vertexIndex)
                     {
@@ -74,13 +74,13 @@ namespace MazeGenerator.Graphs
 
             var stringBuilder = new StringBuilder();
 
-            stringBuilder.Append($"Vertices:{Vertices}, Edges: {_edgesCount}{newline}");
+            stringBuilder.Append($"Vertices:{Vertices}, Edges: {EdgesCount}{newline}");
 
             for (int v = 0; v < Vertices; v++)
             {
                 stringBuilder.Append($"Vertex {v} edges: ");
                 
-                foreach (var edge in _edges[v])
+                foreach (var edge in Edges[v])
                 {
                     stringBuilder.Append($"{edge}  ");
                 }

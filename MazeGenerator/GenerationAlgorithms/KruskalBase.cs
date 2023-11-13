@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using MazeGenerator.Graphs;
+using MazeGenerator.Utils;
 
 namespace MazeGenerator.GenerationAlgorithms
 {
@@ -7,16 +8,16 @@ namespace MazeGenerator.GenerationAlgorithms
         where GraphType : Graph
         where EdgeType : Edge
     {
-        protected readonly int _width;
-        protected readonly int _height;
+        protected readonly int Width;
+        protected readonly int Height;
 
-        protected GraphType _graph;
-        protected List<EdgeType> _spanningTree;
+        protected GraphType Graph;
+        protected List<EdgeType> SpanningTree;
 
         protected KruskalBase(int gridWidth, int gridHeight)
         {
-            _width = gridWidth;
-            _height = gridHeight;
+            Width = gridWidth;
+            Height = gridHeight;
         }
 
         protected void Initialise()
@@ -40,13 +41,13 @@ namespace MazeGenerator.GenerationAlgorithms
 
         private GridCoordinates[] GetVerticesCoordinates()
         {
-            var verticesCoordinates = new GridCoordinates[_width * _height];
-            foreach (var edge in _spanningTree)
+            var verticesCoordinates = new GridCoordinates[Width * Height];
+            foreach (var edge in SpanningTree)
             {
                 verticesCoordinates[edge.Endpoint1] =
-                    new GridCoordinates(edge.Endpoint1 % _width, edge.Endpoint1 / _height);
+                    new GridCoordinates(edge.Endpoint1 % Width, edge.Endpoint1 / Height);
                 verticesCoordinates[edge.Endpoint2] =
-                    new GridCoordinates(edge.Endpoint2 % _width, edge.Endpoint2 / _height);
+                    new GridCoordinates(edge.Endpoint2 % Width, edge.Endpoint2 / Height);
             }
 
             return verticesCoordinates;
@@ -54,11 +55,11 @@ namespace MazeGenerator.GenerationAlgorithms
 
         private bool[,] GetMapFromVerticesCoordinates(GridCoordinates[] verticesCoordinates)
         {
-            var mapWidth = (_width * 2) + 1;
-            var mapHeight = (_height * 2) + 1;
+            var mapWidth = (Width * 2) + 1;
+            var mapHeight = (Height * 2) + 1;
 
             var map = new bool[mapWidth, mapHeight];
-            foreach (var edge in _spanningTree)
+            foreach (var edge in SpanningTree)
             {
                 var mapEdge = new MapEdge(verticesCoordinates[edge.Endpoint1], verticesCoordinates[edge.Endpoint2]);
 

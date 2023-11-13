@@ -1,4 +1,4 @@
-namespace MazeGenerator
+namespace MazeGenerator.Utils
 {
     public readonly struct MapEdge
     {

@@ -7,9 +7,9 @@ namespace MazeGenerator.Graphs
     public class GraphWeighted : Graph
     {
 #if SET_SEED
-        private static readonly Random _random = new Random(0);
+        private static readonly Random Random = new Random(0);
 #else
-        private static readonly Random _random = new Random();
+        private static readonly Random Random = new Random();
 #endif
 
         public GraphWeighted(int vertices) : base(vertices)
@@ -19,13 +19,13 @@ namespace MazeGenerator.Graphs
         
         public void AddEdge(int endpoint1, int endpoint2, float ratio)
         {
-            var edge = new EdgeWeighted(endpoint1, endpoint2, (float)_random.NextDouble() * ratio);
+            var edge = new EdgeWeighted(endpoint1, endpoint2, (float)Random.NextDouble() * ratio);
             AddEdge(edge);
         }
 
         public override void AddEdge(int endpoint1, int endpoint2)
         {
-            var edge = new EdgeWeighted(endpoint1, endpoint2, (float)_random.NextDouble());
+            var edge = new EdgeWeighted(endpoint1, endpoint2, (float)Random.NextDouble());
             AddEdge(edge);
         }
 
@@ -33,9 +33,9 @@ namespace MazeGenerator.Graphs
         {
             int endpoint1 = edgeWeighted.Endpoint1;
             int endpoint2 = edgeWeighted.Endpoint2;
-            _edges[endpoint1].AddFirst(edgeWeighted);
-            _edges[endpoint2].AddFirst(edgeWeighted);
-            _edgesCount++;
+            Edges[endpoint1].AddFirst(edgeWeighted);
+            Edges[endpoint2].AddFirst(edgeWeighted);
+            EdgesCount++;
         }
 
         public new List<EdgeWeighted> GetEdges()
@@ -46,7 +46,7 @@ namespace MazeGenerator.Graphs
             {
                 int selfLoops = 0;
 
-                foreach (var edge in _edges[vertexIndex])
+                foreach (var edge in Edges[vertexIndex])
                 {
                     if (edge.Target(vertexIndex) > vertexIndex)
                     {
@@ -70,13 +70,13 @@ namespace MazeGenerator.Graphs
 
             var stringBuilder = new StringBuilder();
 
-            stringBuilder.Append($"Vertices:{Vertices}, Edges: {_edgesCount}{newline}");
+            stringBuilder.Append($"Vertices:{Vertices}, Edges: {EdgesCount}{newline}");
 
             for (int v = 0; v < Vertices; v++)
             {
                 stringBuilder.Append($"Vertex {v} edges: ");
                 
-                foreach (var edge in _edges[v])
+                foreach (var edge in Edges[v])
                 {
                     stringBuilder.Append($"{edge}  ");
                 }

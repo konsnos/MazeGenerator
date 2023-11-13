@@ -1,4 +1,4 @@
-namespace MazeGenerator.GenerationAlgorithms
+namespace MazeGenerator.Utils
 {
     public enum Direction
     {
